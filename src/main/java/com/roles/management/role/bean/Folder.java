@@ -5,6 +5,7 @@
  */
 package com.roles.management.role.bean;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,23 +18,21 @@ import javax.persistence.OneToMany;
  * @author BlackAngel
  */
 @Entity
-public class Document {
+public class Folder {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    String titre;
+   private Long id;
+   private String titre;
     @OneToMany
-    List<Attribute> attributes;
+   private List<Document> documents;
 
-    public Document() {
+    public Folder() {
     }
 
-    public Document(Long id, String titre, List<Attribute> attributes) {
-        this.id = id;
+    public Folder(String titre, List<Document> documents) {
         this.titre = titre;
-        this.attributes = attributes;
+        this.documents = documents;
     }
 
     public Long getId() {
@@ -52,12 +51,12 @@ public class Document {
         this.titre = titre;
     }
 
-    public List<Attribute> getAttributes() {
-        return attributes;
+    public List<Document> getDocuments() {
+        return documents;
     }
 
-    public void setAttributes(List<Attribute> attributes) {
-        this.attributes = attributes;
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
     }
-
+    
 }

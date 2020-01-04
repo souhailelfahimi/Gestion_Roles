@@ -5,27 +5,46 @@
  */
 package com.roles.management.role.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author BlackAngel
  */
+@Entity
 public class Role {
-    private int id;
-    private String  role;
 
-    public Role(int id, String role) {
-        this.id = id;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String role;
+    private Permission permission;
+
+    public Role(String role, Permission permissions) {
         this.role = role;
+        this.permission = permissions;
+    }
+
+    public Permission getPermissions() {
+        return permission;
+    }
+
+    public void setPermissions(Permission permissions) {
+        this.permission = permissions;
     }
 
     public Role() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -36,6 +55,5 @@ public class Role {
     public void setRole(String role) {
         this.role = role;
     }
-    
-    
+
 }

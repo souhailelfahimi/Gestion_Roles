@@ -5,12 +5,21 @@
  */
 package com.roles.management.role.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author BlackAngel
  */
+@Entity
 public class User {
-    
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long nom;
     private Long prenom;
@@ -18,19 +27,30 @@ public class User {
     private Long mail;
     private Long age;
     private Long jobTitle;
+    private Role role;
 
     public User() {
     }
 
-    public User(Long id, Long nom, Long prenom, Long tele, Long mail, Long age, Long jobTitle) {
-        this.id = id;
+    public User(Long nom, Long prenom, Long tele, Long mail, Long age, Long jobTitle, Role role) {
         this.nom = nom;
         this.prenom = prenom;
         this.tele = tele;
         this.mail = mail;
         this.age = age;
         this.jobTitle = jobTitle;
+        this.role = role;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+   
 
     public Long getId() {
         return id;
@@ -87,5 +107,11 @@ public class User {
     public void setJobTitle(Long jobTitle) {
         this.jobTitle = jobTitle;
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", tele=" + tele + ", mail=" + mail + ", age=" + age + ", jobTitle=" + jobTitle + ", role=" + role + '}';
+    }
+
     
 }

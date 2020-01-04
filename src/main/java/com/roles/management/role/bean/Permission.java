@@ -5,12 +5,22 @@
  */
 package com.roles.management.role.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author BlackAngel
  */
+@Entity
 public class Permission {
-    private int id;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private boolean create;
     private boolean delete;
     private boolean update;
@@ -19,7 +29,7 @@ public class Permission {
     public Permission() {
     }
 
-    public Permission(int id, boolean create, boolean delete, boolean update, boolean list) {
+    public Permission(Long id, boolean create, boolean delete, boolean update, boolean list) {
         this.id = id;
         this.create = create;
         this.delete = delete;
@@ -27,11 +37,11 @@ public class Permission {
         this.list = list;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -66,5 +76,5 @@ public class Permission {
     public void setList(boolean list) {
         this.list = list;
     }
-    
+
 }
