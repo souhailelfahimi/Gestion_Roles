@@ -21,10 +21,10 @@ import javax.persistence.OneToMany;
 public class Folder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
    private String titre;
-    @OneToMany
+    @OneToMany(mappedBy = "folder")
    private List<Document> documents;
 
     public Folder() {

@@ -6,37 +6,58 @@
 package com.roles.management.role.bean;
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author BlackAngel
  */
 @Entity
+@Table(name="document")
 public class Document {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String titre;
-    @OneToMany
-    List<Attribute> attributes;
+    @ManyToOne
+    private Folder folder;
 
+    
+    @OneToMany(mappedBy = "document")
+    
+    private List<Attribute> attributes;
+    
     public Document() {
     }
 
-    public Document(Long id, String titre, List<Attribute> attributes) {
-        this.id = id;
-        this.titre = titre;
-        this.attributes = attributes;
-    }
 
-    public Long getId() {
+
+
+	public Document(String titre, Folder folder) {
+		super();
+		this.titre = titre;
+		this.folder = folder;
+	}
+
+	public Folder getFolder() {
+		return folder;
+	}
+
+	public void setFolder(Folder folder) {
+		this.folder = folder;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -52,12 +73,22 @@ public class Document {
         this.titre = titre;
     }
 
-    public List<Attribute> getAttributes() {
-        return attributes;
-    }
 
-    public void setAttributes(List<Attribute> attributes) {
-        this.attributes = attributes;
-    }
+
+
+	public List<Attribute> getAttributes() {
+		return attributes;
+	}
+
+
+
+
+	public void setAttributes(List<Attribute> attributes) {
+		this.attributes = attributes;
+	}
+    
+    
+
+
 
 }

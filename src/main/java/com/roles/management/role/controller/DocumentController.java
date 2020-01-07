@@ -29,7 +29,7 @@ public class DocumentController {
     @Autowired
     private DocumentRepository documentRepository;
 
-    @GetMapping("/all")
+    @GetMapping("/all") 
     public List<Document> findAll() {
         return documentRepository.findAll();
     }
