@@ -34,6 +34,17 @@ public class Attribute implements Serializable{
 		super();
 	}
 
+    public Attribute(String keyD, String value, Document document) {
+        this.keyD = keyD;
+        this.value = value;
+        this.document = document;
+    }
+
+    public Attribute(String keyD, String value) {
+        this.keyD = keyD;
+        this.value = value;
+    }
+
 	
 
 	

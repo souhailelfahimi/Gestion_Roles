@@ -5,6 +5,7 @@
  */
 package com.roles.management.role.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
  * @author BlackAngel
  */
 @Entity
-@Table(name="document")
+@Table(name = "document")
 public class Document {
 
     private static final long serialVersionUID = 1L;
@@ -32,32 +33,39 @@ public class Document {
     @ManyToOne
     private Folder folder;
 
-    
     @OneToMany(mappedBy = "document")
-    
+
     private List<Attribute> attributes;
-    
+
     public Document() {
     }
 
+    public Document(String titre, List<Attribute> attributes) {
+        this.titre = titre;
+        this.attributes = attributes;
+    }
 
+    public Document(String titre, Folder folder, List<Attribute> attributes) {
+        this.titre = titre;
+        this.folder = folder;
+        this.attributes = attributes;
+    }
 
+    public Document(String titre, Folder folder) {
+        super();
+        this.titre = titre;
+        this.folder = folder;
+    }
 
-	public Document(String titre, Folder folder) {
-		super();
-		this.titre = titre;
-		this.folder = folder;
-	}
+    public Folder getFolder() {
+        return folder;
+    }
 
-	public Folder getFolder() {
-		return folder;
-	}
+    public void setFolder(Folder folder) {
+        this.folder = folder;
+    }
 
-	public void setFolder(Folder folder) {
-		this.folder = folder;
-	}
-
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -73,22 +81,13 @@ public class Document {
         this.titre = titre;
     }
 
+    @JsonIgnore
+    public List<Attribute> getAttributes() {
+        return attributes;
+    }
 
-
-
-	public List<Attribute> getAttributes() {
-		return attributes;
-	}
-
-
-
-
-	public void setAttributes(List<Attribute> attributes) {
-		this.attributes = attributes;
-	}
-    
-    
-
-
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
 
 }

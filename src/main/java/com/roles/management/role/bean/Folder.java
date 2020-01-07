@@ -5,6 +5,7 @@
  */
 package com.roles.management.role.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -35,6 +36,10 @@ public class Folder {
         this.documents = documents;
     }
 
+    public Folder(String titre) {
+        this.titre = titre;
+    }
+
     public Long getId() {
         return id;
     }
@@ -51,10 +56,11 @@ public class Folder {
         this.titre = titre;
     }
 
+    @JsonIgnore
     public List<Document> getDocuments() {
         return documents;
     }
-
+    
     public void setDocuments(List<Document> documents) {
         this.documents = documents;
     }
