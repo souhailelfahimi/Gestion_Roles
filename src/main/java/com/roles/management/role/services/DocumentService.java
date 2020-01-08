@@ -15,4 +15,6 @@ import java.util.List;
  */
 public interface DocumentService {
     public int save(Folder folder,List<Document>documents);
+
+    public void addDocumentToFolder(Long id, List<Document> documents);
 }

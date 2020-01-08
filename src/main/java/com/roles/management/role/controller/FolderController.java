@@ -57,6 +57,11 @@ public class FolderController {
 //
 //        folderService.save(folder);
 //    }
+    
+    @PostMapping("/")
+    public void save(@RequestBody Folder folder) {
+        folderRepository.save(folder);
+    }
 
     @DeleteMapping("/{id]")
     public void remove(@PathVariable("id") Long id) {

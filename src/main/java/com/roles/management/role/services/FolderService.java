@@ -6,13 +6,15 @@
 package com.roles.management.role.services;
 
 import com.roles.management.role.bean.Folder;
+import java.util.Optional;
 
 /**
  *
  * @author BlackAngel
  */
-
 public interface FolderService {
-    
+
     public void save(Folder folder);
+    public Folder findById(Long id);
+    
 }

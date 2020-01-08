@@ -9,6 +9,7 @@ import com.roles.management.role.bean.Folder;
 import com.roles.management.role.dao.FolderRepository;
 import com.roles.management.role.services.DocumentService;
 import com.roles.management.role.services.FolderService;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class FolderServiceImpl implements FolderService {
 
     @Override
     public void save(Folder folder) {
-        
+
         folderRepository.save(folder);
         docummentService.save(folder, folder.getDocuments());
 
@@ -49,5 +50,9 @@ public class FolderServiceImpl implements FolderService {
         this.docummentService = docummentService;
     }
 
-    
+    @Override
+    public Folder findById(Long id) {
+        return folderRepository.findById(id).get();
+    }
+
 }

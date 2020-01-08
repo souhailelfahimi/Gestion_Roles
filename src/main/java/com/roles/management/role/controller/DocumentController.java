@@ -7,6 +7,7 @@ package com.roles.management.role.controller;
 
 import com.roles.management.role.bean.Document;
 import com.roles.management.role.dao.DocumentRepository;
+import com.roles.management.role.services.DocumentService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class DocumentController {
 
     @Autowired
     private DocumentRepository documentRepository;
+    @Autowired
+    private DocumentService documentService;
 
     @GetMapping("/all") 
     public List<Document> findAll() {
@@ -43,6 +46,12 @@ public class DocumentController {
     public void save(@RequestBody Document document) {
         documentRepository.save(document);
     }
+//    @PostMapping("/{id}")
+//    public void saveIdFolder(@PathVariable("id") Long id,@RequestBody List<Document> documents) {
+//        
+//        documentService.addDocumentToFolder(id,documents);
+//        
+//    }
 
     @DeleteMapping("/{id]")
     public void remove(@PathVariable("id") Long id) {

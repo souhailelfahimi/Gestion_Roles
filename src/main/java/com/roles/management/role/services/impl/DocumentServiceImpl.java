@@ -5,13 +5,14 @@
  */
 package com.roles.management.role.services.impl;
 
-import com.roles.management.role.bean.Attribute;
 import com.roles.management.role.bean.Document;
 import com.roles.management.role.bean.Folder;
 import com.roles.management.role.dao.DocumentRepository;
 import com.roles.management.role.services.AttributeService;
 import com.roles.management.role.services.DocumentService;
+import com.roles.management.role.services.FolderService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,6 @@ import org.springframework.stereotype.Service;
  *
  * @author BlackAngel
  */
-
 @Service
 public class DocumentServiceImpl implements DocumentService {
 
@@ -27,19 +27,21 @@ public class DocumentServiceImpl implements DocumentService {
     DocumentRepository documentRepository;
     @Autowired
     AttributeService attributeService;
+    @Autowired
+    FolderService folderService;
 
     @Override
     public int save(Folder folder, List<Document> documents) {
         if (documents != null || !documents.isEmpty()) {
-            
-             for (Document doc : documents) {
-                System.out.println("222222222222222"+doc.toString()); 
-           }
+
+            for (Document doc : documents) {
+                System.out.println("222222222222222" + doc.toString());
+            }
             for (Document doc : documents) {
                 doc.setFolder(folder);
                 documentRepository.save(doc);
                 attributeService.save(doc, doc.getAttributes());
-                
+
             }
             return 1;
         } else {
@@ -63,6 +65,17 @@ public class DocumentServiceImpl implements DocumentService {
     public void setAttributeService(AttributeService attributeService) {
         this.attributeService = attributeService;
     }
-    
+
+    @Override
+    public void addDocumentToFolder(Long id, List<Document> documents) {
+
+        Folder f = folderService.findById(id);
+        for (Document doc : documents) {
+
+            doc.setFolder(f);
+            documentRepository.save(doc);
+            attributeService.save(doc, doc.getAttributes());
+        }
+    }
 
 }
