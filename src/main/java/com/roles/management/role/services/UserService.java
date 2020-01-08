@@ -10,5 +10,6 @@ public interface UserService {
 	public AppUser AddUSer(AppUser user,List<AppRole> roles);
 	public AppUser findUserByUserNamme(String username);
 	public AppRole AddRole(AppRole role);
+        public void deleteRole(Long id);
 	public void addRoleToUser(String username, String rolename);
 }

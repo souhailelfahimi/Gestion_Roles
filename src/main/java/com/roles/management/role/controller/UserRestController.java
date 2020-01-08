@@ -17,6 +17,8 @@ import com.roles.management.role.dao.PermessionRepository;
 import com.roles.management.role.dao.RoleRepository;
 import com.roles.management.role.dao.UserRepository;
 import com.roles.management.role.services.UserService;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 
@@ -50,6 +52,13 @@ public class UserRestController {
 	public List<AppRole> getRoles(){
 		return roleRepository.findAll();
 	}
+        @DeleteMapping("/roles/{id}")
+        public void deleteRole(@PathVariable("id") Long id)
+        {
+            permessionRepository.deleteByRoleId(id);
+            roleRepository.deleteRoleById(id);
+            roleRepository.deleteById(id);
+        }
 	
 	@PostMapping("/roles/addroles")
 	public String addRole(@RequestBody AppRole appRole) {

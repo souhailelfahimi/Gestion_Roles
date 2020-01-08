@@ -1,5 +1,6 @@
 package com.roles.management.role.services.impl;
 
+import com.roles.management.role.bean.AppPermession;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.roles.management.role.bean.AppRole;
 import com.roles.management.role.bean.AppUser;
+import com.roles.management.role.dao.PermessionRepository;
 import com.roles.management.role.dao.RoleRepository;
 import com.roles.management.role.dao.UserRepository;
 import com.roles.management.role.services.UserService;
+import java.util.ArrayList;
 
 
 
@@ -25,6 +28,8 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private PermessionRepository permessionRepository;
 	
 	@Autowired
 	private RoleRepository roleRepository;
@@ -69,6 +74,13 @@ public class UserServiceImpl implements UserService{
 		AppUser user = userRepository.findByUsername(username);
 		user.getRoles().add(role);
 	}
+
+    @Override
+    public void deleteRole(Long id) {
+         
+        List<AppPermession> permessions=new ArrayList<>();     
+          //  permessions=perm
+    }
 
 	
 
