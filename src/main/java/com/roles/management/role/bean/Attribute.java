@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
  * @author BlackAngel
  */
 @Entity
-public class Attribute implements Serializable{
+public class Attribute implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +30,9 @@ public class Attribute implements Serializable{
     @ManyToOne
     private Document document;
 
-	public Attribute() {
-		super();
-	}
+    public Attribute() {
+        super();
+    }
 
     public Attribute(String keyD, String value, Document document) {
         this.keyD = keyD;
@@ -45,91 +45,50 @@ public class Attribute implements Serializable{
         this.value = value;
     }
 
-	
-
-	
-
-
-
-	public Attribute(long id, String keyD, String value, Document document) {
-		super();
-		this.id = id;
-		this.keyD = keyD;
-		this.value = value;
-		this.document = document;
-	}
-
-
-
-
-
-
-
-	public Document getDocument() {
-		return document;
-	}
-
-
-
-
-
-
-
-	public void setDocument(Document document) {
-		this.document = document;
-	}
-
-
-
-
-
-
-
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	
-
-	
-
-
-
-	public String getKeyD() {
-		return keyD;
-	}
-
-
-
-
-
-
-
-	public void setKeyD(String keyD) {
-		this.keyD = keyD;
-	}
-
-
-
-
-
-
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
-
+    public Attribute(long id, String keyD, String value, Document document) {
+        super();
+        this.id = id;
+        this.keyD = keyD;
+        this.value = value;
+        this.document = document;
+    }
     
-    
-    
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getKeyD() {
+        return keyD;
+    }
+
+    public void setKeyD(String keyD) {
+        this.keyD = keyD;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Attribute{" + "id=" + id + ", keyD=" + keyD + ", value=" + value + ", document=" + document + '}';
+    }
+
 }

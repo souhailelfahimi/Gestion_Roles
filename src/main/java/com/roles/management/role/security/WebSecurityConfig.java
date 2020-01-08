@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		//We use the JWTAuthorization filter that we created
 		http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 		
-		http.authorizeRequests().antMatchers("/register", "/login","/roles/addroles").permitAll();
+		http.authorizeRequests().antMatchers("/register", "/login","/roles/addroles","/folders/**","/documents/**","/attributs/**").permitAll();
 		
 		http.authorizeRequests().antMatchers(HttpMethod.POST,"/").hasAuthority("consultation");
 

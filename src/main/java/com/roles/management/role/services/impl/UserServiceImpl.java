@@ -1,4 +1,4 @@
-package com.roles.management.role.services;
+package com.roles.management.role.services.impl;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import com.roles.management.role.bean.AppRole;
 import com.roles.management.role.bean.AppUser;
 import com.roles.management.role.dao.RoleRepository;
 import com.roles.management.role.dao.UserRepository;
+import com.roles.management.role.services.UserService;
 
 
 

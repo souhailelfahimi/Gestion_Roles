@@ -28,8 +28,8 @@ public class Document {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String titre;
+    private Long id;
+    private String titre;
     @ManyToOne
     private Folder folder;
 
@@ -61,6 +61,7 @@ public class Document {
         return folder;
     }
 
+    
     public void setFolder(Folder folder) {
         this.folder = folder;
     }
@@ -81,13 +82,17 @@ public class Document {
         this.titre = titre;
     }
 
-    @JsonIgnore
     public List<Attribute> getAttributes() {
         return attributes;
     }
 
     public void setAttributes(List<Attribute> attributes) {
         this.attributes = attributes;
+    }
+
+    @Override
+    public String toString() {
+        return "Document{" + "id=" + id + ", titre=" + titre + ", folder=" + folder + ", attributes=" + attributes + '}';
     }
 
 }

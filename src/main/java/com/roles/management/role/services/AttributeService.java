@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.roles.management.role.dao;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+package com.roles.management.role.services;
 
 import com.roles.management.role.bean.Attribute;
+import com.roles.management.role.bean.Document;
+import java.util.List;
 
 /**
  *
  * @author BlackAngel
  */
-@Repository
-public interface AttributeRepository extends JpaRepository<Attribute, Long>{
+public interface AttributeService {
+    
+        public int save(Document document,List<Attribute>attributes);
+
 }

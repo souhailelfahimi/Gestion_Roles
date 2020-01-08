@@ -5,8 +5,11 @@
  */
 package com.roles.management.role.controller;
 
+import com.roles.management.role.bean.Document;
 import com.roles.management.role.bean.Folder;
 import com.roles.management.role.dao.FolderRepository;
+import com.roles.management.role.services.FolderService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/folders")
 public class FolderController {
-    
-       @Autowired
+
+    @Autowired
     private FolderRepository folderRepository;
+    @Autowired
+    private FolderService folderService;
 
     @GetMapping("/all")
     public List<Folder> findAll() {
@@ -39,14 +44,39 @@ public class FolderController {
         return folderRepository.findById(id);
     }
 
-    @PostMapping("/")
-    public void save(@RequestBody Folder folder) {
-        folderRepository.save(folder);
-    }
+//    @PostMapping("/")
+//    public void save(@RequestBody Folder folder) {
+//        System.out.println("salam");
+//        List<Document> documents = new ArrayList<>();
+//        documents.addAll(folder.getDocuments());
+//        if (documents != null && !documents.isEmpty()) {
+//            for (Document object : documents) {
+//                object.toString();
+//            }
+//        }
+//
+//        folderService.save(folder);
+//    }
 
     @DeleteMapping("/{id]")
     public void remove(@PathVariable("id") Long id) {
         folderRepository.deleteById(id);
     }
-    
+
+    public FolderRepository getFolderRepository() {
+        return folderRepository;
+    }
+
+    public void setFolderRepository(FolderRepository folderRepository) {
+        this.folderRepository = folderRepository;
+    }
+
+    public FolderService getFolderService() {
+        return folderService;
+    }
+
+    public void setFolderService(FolderService folderService) {
+        this.folderService = folderService;
+    }
+
 }

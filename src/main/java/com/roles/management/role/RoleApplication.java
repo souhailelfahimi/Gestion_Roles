@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.roles.management.role.bean.AppPermession;
 import com.roles.management.role.bean.AppRole;
-import com.roles.management.role.services.UserServiceImpl;
+import com.roles.management.role.services.impl.UserServiceImpl;
 import com.roles.management.role.services.permessionService;
 
 @SpringBootApplication

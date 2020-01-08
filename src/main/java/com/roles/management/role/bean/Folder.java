@@ -36,6 +36,8 @@ public class Folder {
         this.documents = documents;
     }
 
+    
+    
     public Folder(String titre) {
         this.titre = titre;
     }
@@ -56,7 +58,6 @@ public class Folder {
         this.titre = titre;
     }
 
-    @JsonIgnore
     public List<Document> getDocuments() {
         return documents;
     }
@@ -64,5 +65,11 @@ public class Folder {
     public void setDocuments(List<Document> documents) {
         this.documents = documents;
     }
+
+    @Override
+    public String toString() {
+        return "Folder{" + "id=" + id + ", titre=" + titre + ", documents=" + documents + '}';
+    }
+    
     
 }
