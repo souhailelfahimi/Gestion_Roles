@@ -39,8 +39,8 @@ public class DocumentServiceImpl implements DocumentService {
             }
             for (Document doc : documents) {
                 doc.setFolder(folder);
-                documentRepository.save(doc);
-                attributeService.save(doc, doc.getAttributes());
+                Document d=documentRepository.save(doc);
+                attributeService.save(d, doc.getAttributes());
 
             }
             return 1;

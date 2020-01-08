@@ -5,6 +5,7 @@
  */
 package com.roles.management.role.controller;
 
+import com.roles.management.role.bean.Attribute;
 import com.roles.management.role.bean.Document;
 import com.roles.management.role.bean.Folder;
 import com.roles.management.role.dao.FolderRepository;
@@ -44,25 +45,38 @@ public class FolderController {
         return folderRepository.findById(id);
     }
 
-//    @PostMapping("/")
-//    public void save(@RequestBody Folder folder) {
-//        System.out.println("salam");
-//        List<Document> documents = new ArrayList<>();
-//        documents.addAll(folder.getDocuments());
-//        if (documents != null && !documents.isEmpty()) {
-//            for (Document object : documents) {
-//                object.toString();
-//            }
-//        }
-//
-//        folderService.save(folder);
-//    }
-    
     @PostMapping("/")
     public void save(@RequestBody Folder folder) {
-        folderRepository.save(folder);
-    }
+        System.out.println("salam");
+        List<Document> documents = new ArrayList<>();
+        documents.addAll(folder.getDocuments());
+        if (documents != null && !documents.isEmpty()) {
+           for (Document object : documents) {
+                object.toString();
+            }
+        }
 
+        folderService.save(folder);
+    }
+    /*
+    @PostMapping("/")
+    public void save(@RequestBody Folder folder) {
+    	
+    	Folder f=new Folder(folder.getTitre());
+    	System.out.println("size1====>"+folder.getDocuments().size());
+    	folder.getDocuments().forEach(d->{
+    		Document dossier=new Document(d.getTitre(),f);
+    		System.out.println("size2====>"+dossier.getAttributes().size());
+    			dossier.getAttributes().forEach(a->{
+    				Attribute att=new Attribute(a.getKeyD(),a.getValue(),dossier);
+    				dossier.getAttributes().add(att);
+    			});
+    			f.getDocuments().add(dossier);
+    	});
+    	
+        folderRepository.save(f);
+    }
+*/
     @DeleteMapping("/{id]")
     public void remove(@PathVariable("id") Long id) {
         folderRepository.deleteById(id);

@@ -29,8 +29,9 @@ public class FolderServiceImpl implements FolderService {
     @Override
     public void save(Folder folder) {
 
-        folderRepository.save(folder);
-        docummentService.save(folder, folder.getDocuments());
+        Folder f=folderRepository.save(folder);
+        
+        docummentService.save(f, folder.getDocuments());
 
     }
 
