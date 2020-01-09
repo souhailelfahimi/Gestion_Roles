@@ -89,6 +89,13 @@ public class DocumentServiceImpl implements DocumentService {
 
         Folder f;
         f = folderService.findById(id);
+
+        System.out.println("Folder Id "+f.getId());
+           doc.setFolder(f);
+            documentRepository.save(doc);
+            //attributeService.save(doc, doc.getAttributes());
+        
+
         doc.setFolder(f);
         documentRepository.save(doc);
         //attributeService.save(doc, doc.getAttributes());

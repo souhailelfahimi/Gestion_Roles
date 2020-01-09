@@ -31,6 +31,7 @@ public class Document {
     private Long id;
     private String titre;
     @ManyToOne
+    //
     private Folder folder;
 
     @OneToMany(mappedBy = "document")
@@ -55,7 +56,8 @@ public class Document {
         this.titre = titre;
         this.folder = folder;
     }
-    
+
+    @JsonIgnore
     public Folder getFolder() {
         return folder;
     }

@@ -47,6 +47,11 @@ public class UserRestController {
 			return response;
 		}
 	}
+	
+	@GetMapping("/users")
+	public List<AppUser> getAllusers(){
+		return userservice.getAllUsers();
+	}
 
 	@PostMapping("/addUser")
 	public User register(@RequestBody User user) {

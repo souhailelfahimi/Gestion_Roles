@@ -55,6 +55,14 @@ public class AppRole implements Serializable{
 	public String toString() {
 		return "AppRole [Id=" + Id + ", name=" + name + "]";
 	}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 	
 	
 	

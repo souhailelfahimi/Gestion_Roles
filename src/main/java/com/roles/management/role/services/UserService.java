@@ -21,5 +21,7 @@ public interface UserService {
     public void addRoleToUser(String username, String rolename);
 
     public void updateRole(AppRole role);
+    
+    public List<AppUser> getAllUsers();
 
 }
