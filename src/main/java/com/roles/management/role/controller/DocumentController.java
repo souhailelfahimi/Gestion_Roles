@@ -55,7 +55,7 @@ public class DocumentController {
         documentService.addOneDocumentToFolder(document.getFolder().getId(), doc);
     }
 
-    @PostMapping("/{folderId/{docTitre}")
+    @PostMapping("/addoc/{folderId}/{docTitre}")
     public void save(@PathVariable("folderId") Long folderId, @PathVariable("docTitre") String docTitre) {
         Folder f = folderService.findById(folderId);
         Document d = new Document(docTitre, f);
