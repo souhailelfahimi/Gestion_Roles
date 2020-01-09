@@ -89,13 +89,13 @@ public class DocumentServiceImpl implements DocumentService {
 
         Folder f;
         f = folderService.findById(id);
-<<<<<<< HEAD
+
         System.out.println("Folder Id "+f.getId());
            doc.setFolder(f);
             documentRepository.save(doc);
             //attributeService.save(doc, doc.getAttributes());
         
-=======
+
         doc.setFolder(f);
         documentRepository.save(doc);
         //attributeService.save(doc, doc.getAttributes());
@@ -139,7 +139,6 @@ public class DocumentServiceImpl implements DocumentService {
         Myattributes.add(new Attribute(lines[5].split(":")[0], lines[5].split(":")[1]));
         attributeService.save(d, Myattributes);
 
->>>>>>> a9792ff8a00212eae6f7791fb353f4d3b5acb6fb
     }
 
 }

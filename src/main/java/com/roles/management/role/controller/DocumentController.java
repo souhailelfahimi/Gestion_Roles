@@ -48,13 +48,13 @@ public class DocumentController {
 
     @PostMapping("/")
     public void save(@RequestBody Document document) {
-<<<<<<< HEAD
+
         System.out.println("fix   Doc ////"+document.getFolder().getId());
        
        // Document doc=documentRepository.save(document);
        // System.out.println("fix   DocSave+ ////"+doc.getId());
         documentService.addOneDocumentToFolder(document.getFolder().getId(),document);
-=======
+
         System.out.println("fix   Doc ////" + document.getFolder().getId());
 
         Document doc = documentRepository.save(document);
@@ -68,7 +68,7 @@ public class DocumentController {
         Document d = new Document(docTitre, f);
         documentRepository.save(d);
 
->>>>>>> a9792ff8a00212eae6f7791fb353f4d3b5acb6fb
+
     }
 
 //    @PostMapping("/pdf/{folderId}/{location}")
