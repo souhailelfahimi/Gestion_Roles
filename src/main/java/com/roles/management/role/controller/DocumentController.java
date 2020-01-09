@@ -6,8 +6,10 @@
 package com.roles.management.role.controller;
 
 import com.roles.management.role.bean.Document;
+import com.roles.management.role.bean.Folder;
 import com.roles.management.role.dao.DocumentRepository;
 import com.roles.management.role.services.DocumentService;
+import com.roles.management.role.services.FolderService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,10 @@ public class DocumentController {
     private DocumentRepository documentRepository;
     @Autowired
     private DocumentService documentService;
+    @Autowired
+    private FolderService folderService;
 
-    @GetMapping("/all") 
+    @GetMapping("/all")
     public List<Document> findAll() {
         return documentRepository.findAll();
     }
@@ -44,19 +48,44 @@ public class DocumentController {
 
     @PostMapping("/")
     public void save(@RequestBody Document document) {
+<<<<<<< HEAD
         System.out.println("fix   Doc ////"+document.getFolder().getId());
        
        // Document doc=documentRepository.save(document);
        // System.out.println("fix   DocSave+ ////"+doc.getId());
         documentService.addOneDocumentToFolder(document.getFolder().getId(),document);
+=======
+        System.out.println("fix   Doc ////" + document.getFolder().getId());
+
+        Document doc = documentRepository.save(document);
+        System.out.println("fix   DocSave+ ////" + doc.getId());
+        documentService.addOneDocumentToFolder(document.getFolder().getId(), doc);
     }
+
+    @PostMapping("/{folderId/{docTitre}")
+    public void save(@PathVariable("folderId") Long folderId, @PathVariable("docTitre") String docTitre) {
+        Folder f = folderService.findById(folderId);
+        Document d = new Document(docTitre, f);
+        documentRepository.save(d);
+
+>>>>>>> a9792ff8a00212eae6f7791fb353f4d3b5acb6fb
+    }
+
+//    @PostMapping("/pdf/{folderId}/{location}")
+//    public void save(@PathVariable("folderId") Long folderId, @PathVariable("location") String location) {
+//        documentService.addDocumentFromPdf(location, folderId);
+//    }
+    @PostMapping("/pdf/{folderId}")
+    public void save(@PathVariable("folderId") Long folderId) {
+        documentService.addDocumentFromPdf("C://Users//BlackAngel//Desktop//breq//test.pdf", folderId);
+    }
+
 //    @PostMapping("/{id}")
 //    public void saveIdFolder(@PathVariable("id") Long id,@RequestBody List<Document> documents) {
 //        
 //        documentService.addDocumentToFolder(id,documents);
 //        
 //    }
-
     @DeleteMapping("/{id]")
     public void remove(@PathVariable("id") Long id) {
         documentRepository.deleteById(id);
