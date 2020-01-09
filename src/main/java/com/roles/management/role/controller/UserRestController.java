@@ -92,5 +92,13 @@ public class UserRestController {
 		return "role saved!";
 	}
 	
+@GetMapping("/roles/{id}")
+	public AppRole getRoleById(@PathVariable long id){
+		System.out.println("id===>"+id);
+		Optional<AppRole> role=roleRepository.findById(id);
+		if(role.isPresent()) return role.get();
+		return null;
+	}
+	
 
 }
