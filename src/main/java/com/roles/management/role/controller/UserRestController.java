@@ -97,7 +97,7 @@ public class UserRestController {
 		return null;
 	}
 
-         @PostMapping("/roles/update/")
+         @PostMapping("/roles/update")
 	public void updateRoles(@RequestBody AppRole role){
 		userservice.updateRole(role);
 	}
