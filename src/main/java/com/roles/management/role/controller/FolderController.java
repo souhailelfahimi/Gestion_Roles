@@ -43,6 +43,7 @@ public class FolderController {
     @GetMapping("/{id}")
     public Optional<Folder> findById(@PathVariable("id") Long id) {
         return folderRepository.findById(id);
+        
     }
 
     @PostMapping("/")
