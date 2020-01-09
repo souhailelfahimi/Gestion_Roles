@@ -89,6 +89,17 @@ public class UserServiceImpl implements UserService{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-	
+	 @Override
+    public void updateRole(AppRole role) {
+
+        roleRepository.deleteOldPermissions(role.getId());
+        for (AppPermession permession : role.getPermessions()) {
+
+           // AppPermession p = permessionRepository.save(permession);
+            permessionRepository.AddNewPermission(role.getId(), permession.getId());
+
+        }
+
+    }
 
 }
