@@ -92,6 +92,7 @@ public class UserServiceImpl implements UserService{
 	 @Override
     public void updateRole(AppRole role) {
 
+        AppRole NewRole=role;
         roleRepository.deleteOldPermissions(role.getId());
         for (AppPermession permession : role.getPermessions()) {
 
@@ -99,6 +100,8 @@ public class UserServiceImpl implements UserService{
             permessionRepository.AddNewPermission(role.getId(), permession.getId());
 
         }
+        NewRole.setRole(role.getName());
+        roleRepository.save(NewRole);
 
     }
 
