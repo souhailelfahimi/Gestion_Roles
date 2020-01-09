@@ -78,4 +78,15 @@ public class DocumentServiceImpl implements DocumentService {
         }
     }
 
+    @Override
+    public void addOneDocumentToFolder(Long id, Document doc) {
+        
+        Folder f;
+        f = folderService.findById(id);
+           doc.setFolder(f);
+            documentRepository.save(doc);
+            //attributeService.save(doc, doc.getAttributes());
+        
+    }
+
 }

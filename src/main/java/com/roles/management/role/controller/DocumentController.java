@@ -44,7 +44,11 @@ public class DocumentController {
 
     @PostMapping("/")
     public void save(@RequestBody Document document) {
-        documentRepository.save(document);
+        System.out.println("fix   Doc ////"+document.getFolder().getId());
+        
+        Document doc=documentRepository.save(document);
+        System.out.println("fix   DocSave+ ////"+doc.getId());
+        documentService.addOneDocumentToFolder(document.getFolder().getId(),doc);
     }
 //    @PostMapping("/{id}")
 //    public void saveIdFolder(@PathVariable("id") Long id,@RequestBody List<Document> documents) {
