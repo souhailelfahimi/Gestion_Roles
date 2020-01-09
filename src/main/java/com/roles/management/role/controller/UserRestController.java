@@ -64,7 +64,7 @@ public class UserRestController {
 		return roleRepository.findAll();
 	}
 
-	@DeleteMapping("/roles/{id}")
+	@DeleteMapping("/roles/delete/{id}")
 	public void deleteRole(@PathVariable("id") Long id) {
 		permessionRepository.deleteByRoleId(id);
 		roleRepository.deleteRoleById(id);
