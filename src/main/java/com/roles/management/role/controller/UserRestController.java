@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.roles.management.role.bean.AppPermession;
 import com.roles.management.role.bean.AppRole;
 import com.roles.management.role.bean.AppUser;
+import com.roles.management.role.bean.User;
 import com.roles.management.role.dao.PermessionRepository;
 import com.roles.management.role.dao.RoleRepository;
 import com.roles.management.role.dao.UserRepository;
@@ -44,6 +45,16 @@ public class UserRestController {
 		if(test!=null) throw new RuntimeException("User already exists !!");
 		else {
 			AppUser response = userservice.AddUSer(user,user.getRoles());
+			return response;
+		}
+	}
+        
+        @PostMapping("/addUser")
+	public User register(@RequestBody User user) { 
+		AppUser test = userservice.findUserByUserNamme(user.getUsername());
+		if(test!=null) throw new RuntimeException("User already exists !!");
+		else {
+			User response = userservice.saveUser(user);
 			return response;
 		}
 	}

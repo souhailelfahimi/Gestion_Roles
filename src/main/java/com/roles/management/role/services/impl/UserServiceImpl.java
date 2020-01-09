@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.roles.management.role.bean.AppRole;
 import com.roles.management.role.bean.AppUser;
+import com.roles.management.role.bean.User;
 import com.roles.management.role.dao.PermessionRepository;
 import com.roles.management.role.dao.RoleRepository;
 import com.roles.management.role.dao.UserRepository;
@@ -42,7 +43,8 @@ public class UserServiceImpl implements UserService{
 		AppUser u=new AppUser(user.getUsername(),bCryptPasswordEncoder.encode(user.getPassword()));		
 		
 		
-		for(int i=0;i<roles.size();i++) {
+		for(int i=0;i<roles.size();i++) 
+                {
 			//System.out.println("=====> "+roles.get(i).getRole());
 			AppRole role=roleRepository.findRole(roles.get(i).getRole());
 			u.getRoles().add(role);
@@ -80,6 +82,11 @@ public class UserServiceImpl implements UserService{
          
         List<AppPermession> permessions=new ArrayList<>();     
           //  permessions=perm
+    }
+
+    @Override
+    public User saveUser(User user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 	

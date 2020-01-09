@@ -47,8 +47,9 @@ public class FolderController {
 
     @PostMapping("/")
     public void save(@RequestBody Folder folder) {
-        System.out.println("salam");
+        System.out.println("salamm");
         List<Document> documents = new ArrayList<>();
+        if(folder.getDocuments()!=null)
         documents.addAll(folder.getDocuments());
         if (documents != null && !documents.isEmpty()) {
            for (Document object : documents) {
