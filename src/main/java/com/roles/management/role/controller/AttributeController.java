@@ -45,6 +45,8 @@ public class AttributeController {
     public void save(@RequestBody Attribute attribute) {
         attributeRepository.save(attribute);
     }
+    
+    
 
     @DeleteMapping("/{id]")
     public void remove(@PathVariable("id") Long id) {
