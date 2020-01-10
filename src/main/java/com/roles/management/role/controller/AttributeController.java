@@ -53,7 +53,7 @@ public class AttributeController {
         attributeRepository.save(attribute);
     }
 
-    @PostMapping("/addAttributes/{docId}/")
+    @PostMapping("/addAttributes/{docId}")
     public void save(@PathVariable("docId") Long docId, @RequestBody List<Attribute> attributes) {
         Document doc = documentRepository.findById(docId).get();
         attributeService.save(doc, attributes);
