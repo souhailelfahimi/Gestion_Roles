@@ -16,5 +16,6 @@ import java.util.List;
 public interface AttributeService {
     
         public int save(Document document,List<Attribute>attributes);
+        public int update(List<Attribute>attributes);
 
 }

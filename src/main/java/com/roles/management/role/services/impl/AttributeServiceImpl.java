@@ -42,4 +42,12 @@ public class AttributeServiceImpl implements AttributeService {
 
     }
 
+    @Override
+    public int update(List<Attribute> attributes) {
+        int i=0;
+        
+        return 0;
+        
+    }
+
 }

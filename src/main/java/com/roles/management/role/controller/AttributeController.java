@@ -56,7 +56,17 @@ public class AttributeController {
         Document doc = documentRepository.findById(docId).get();
         attributeService.save(doc, attributes);
     }
-
+    
+    @PostMapping("/modifier")
+    public void modifier(@RequestBody List<Attribute> attributes) {
+        
+        //attributeService.save(doc, attributes);
+        for(Attribute object : attributes )
+        {
+            attributeRepository.updateAttribute(object.getKeyD(), object.getValue(), object.getId());
+        }
+        
+    }
     @DeleteMapping("/{id]")
     public void remove(@PathVariable("id") Long id) {
         attributeRepository.deleteById(id);
