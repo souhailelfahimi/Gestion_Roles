@@ -5,8 +5,10 @@
  */
 package com.roles.management.role.controller;
 
+import com.roles.management.role.bean.Attribute;
 import com.roles.management.role.bean.Document;
 import com.roles.management.role.bean.Folder;
+import com.roles.management.role.dao.AttributeRepository;
 import com.roles.management.role.dao.DocumentRepository;
 import com.roles.management.role.services.DocumentService;
 import com.roles.management.role.services.FolderService;
@@ -35,6 +37,9 @@ public class DocumentController {
     private DocumentService documentService;
     @Autowired
     private FolderService folderService;
+    
+     @Autowired
+    private AttributeRepository attributeRep;
 
     @GetMapping("/all")
     public List<Document> findAll() {
@@ -68,6 +73,21 @@ public class DocumentController {
         Document d = new Document(docTitre, f);
         documentRepository.save(d);
 
+
+    }
+    @PostMapping("/delete/{id}")
+    public void deleteDoc(@PathVariable("id") Long id) 
+    {
+        
+        System.out.println("delete   Doc ////" + id);
+        Optional<Document> d=documentRepository.findById(id);
+        Document dd=new Document();
+        dd=d.get();
+        for (Attribute object : dd.getAttributes()) {
+                attributeRep.deleteById(object.getId());
+            }
+        
+        documentRepository.deleteById(id);
 
     }
 

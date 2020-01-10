@@ -5,6 +5,7 @@
  */
 package com.roles.management.role.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  *
@@ -53,7 +56,7 @@ public class Attribute implements Serializable {
         this.document = document;
     }
     
-
+@JsonIgnore
     public Document getDocument() {
         return document;
     }

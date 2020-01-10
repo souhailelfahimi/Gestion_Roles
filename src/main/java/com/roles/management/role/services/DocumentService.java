@@ -19,4 +19,5 @@ public interface DocumentService {
     public void addDocumentToFolder(Long id, List<Document> documents);
     public void addOneDocumentToFolder(Long id, Document documents);
     public void addDocumentFromPdf(String Url,Long folderId,String source);
+    public void deleteDoc(Long id);
 }

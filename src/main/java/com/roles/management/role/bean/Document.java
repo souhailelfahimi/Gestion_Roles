@@ -35,7 +35,6 @@ public class Document {
     private Folder folder;
 
     @OneToMany(mappedBy = "document")
-
     private List<Attribute> attributes;
 
     public Document() {
@@ -57,6 +56,7 @@ public class Document {
         this.titre = titre;
         this.folder = folder;
     }
+
     @JsonIgnore
     public Folder getFolder() {
         return folder;

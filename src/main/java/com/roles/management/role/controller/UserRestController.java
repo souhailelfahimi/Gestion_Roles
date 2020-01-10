@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +20,7 @@ import com.roles.management.role.dao.PermessionRepository;
 import com.roles.management.role.dao.RoleRepository;
 import com.roles.management.role.dao.UserRepository;
 import com.roles.management.role.services.UserService;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 @CrossOrigin
@@ -40,6 +41,8 @@ public class UserRestController {
 	@PostMapping("/register")
 	public AppUser register(@RequestBody AppUser user) {
 		AppUser test = userservice.findUserByUserNamme(user.getUsername());
+		System.out.println("user"+user.getUsername());
+		System.out.println("password"+user.getPassword());
 		if (test != null)
 			throw new RuntimeException("User already exists !!");
 		else {
@@ -47,6 +50,19 @@ public class UserRestController {
 			return response;
 		}
 	}
+	
+	@GetMapping("/users")
+	public List<AppUser> getAllusers(){
+		return userservice.getAllUsers();
+	}
+	
+	@GetMapping("/users/{id}")
+	public AppUser updateUser(@PathVariable long id) {
+		return userservice.findUserbyId(id);
+	}
+	
+	
+	
 
 	@PostMapping("/addUser")
 	public User register(@RequestBody User user) {
@@ -70,6 +86,14 @@ public class UserRestController {
 		roleRepository.deleteRoleById(id);
 		roleRepository.deleteById(id);
 	}
+	
+	@PostMapping("/users/updateuser")
+	public void updateUserInfos(@RequestBody AppUser user) {
+		System.out.println(user.getId());
+		userservice.updateUser(user);
+		
+		//userRepository.save(user);
+	}
 
 	@PostMapping("/roles/addroles")
 	public String addRole(@RequestBody AppRole appRole) {
@@ -87,7 +111,14 @@ public class UserRestController {
 
 		return "role saved!";
 	}
-
+	
+	
+	@DeleteMapping("/users/delete/{id}")
+	public void deleteUser(@PathVariable long id) {
+		this.userservice.deleteUser(id);
+	}
+	
+	
 	@GetMapping("/roles/{id}")
 	public AppRole getRoleById(@PathVariable long id) {
 		System.out.println("id===>" + id);
@@ -97,7 +128,7 @@ public class UserRestController {
 		return null;
 	}
 
-         @PostMapping("/roles/update/")
+         @PostMapping("/roles/update")
 	public void updateRoles(@RequestBody AppRole role){
 		userservice.updateRole(role);
 	}

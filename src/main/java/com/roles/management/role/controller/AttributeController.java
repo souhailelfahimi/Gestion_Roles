@@ -48,10 +48,8 @@ public class AttributeController {
         return attributeRepository.findById(id);
     }
 
-    @PostMapping("/")
-    public void save(@RequestBody Attribute attribute) {
-        attributeRepository.save(attribute);
-    }
+  
+    
 
     @PostMapping("/addAttributes/{docId}")
     public void save(@PathVariable("docId") Long docId, @RequestBody List<Attribute> attributes) {
