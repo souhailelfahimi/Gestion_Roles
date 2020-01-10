@@ -91,13 +91,15 @@ public class DocumentController {
 
     }
 
-//    @PostMapping("/pdf/{folderId}/{location}")
-//    public void save(@PathVariable("folderId") Long folderId, @PathVariable("location") String location) {
-//        documentService.addDocumentFromPdf(location, folderId);
+
+//    @PostMapping("/pdf/lettreMotivation/{folderId}")
+//    public void saveLettre(@PathVariable("folderId") Long folderId) {
+//        documentService.addDocumentFromPdf("C://Users//BlackAngel//Desktop//breq//test.pdf", folderId,"lettre");
 //    }
-    @PostMapping("/pdf/{folderId}")
-    public void save(@PathVariable("folderId") Long folderId) {
-        documentService.addDocumentFromPdf("C://Users//BlackAngel//Desktop//breq//test.pdf", folderId);
+    @PostMapping("/pdf/facture/{folderId}/path/{path}")
+    public void saveFacture(@PathVariable("folderId") Long folderId,@PathVariable("path") String path) {
+        System.out.println("id ="+folderId+"   path ="+path);
+        //documentService.addDocumentFromPdf("C://Users//BlackAngel//Desktop//breq//facture.pdf", folderId,"facture");
     }
 
 //    @PostMapping("/{id}")
