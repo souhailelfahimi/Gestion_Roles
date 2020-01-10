@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author BlackAngel
@@ -53,7 +55,7 @@ public class Attribute implements Serializable {
         this.document = document;
     }
     
-
+    @JsonIgnore
     public Document getDocument() {
         return document;
     }
