@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.roles.management.role.bean.Attribute;
+import com.roles.management.role.bean.Document;
 import com.roles.management.role.dao.AttributeRepository;
+import com.roles.management.role.dao.DocumentRepository;
+import com.roles.management.role.services.AttributeService;
 
 /**
  *
@@ -30,6 +33,10 @@ public class AttributeController {
 
     @Autowired
     private AttributeRepository attributeRepository;
+    @Autowired
+    private AttributeService attributeService;
+    @Autowired
+    private DocumentRepository documentRepository;
 
     @GetMapping("/all")
     public List<Attribute> findAll() {
@@ -47,6 +54,12 @@ public class AttributeController {
     }
     
     
+
+    @PostMapping("/addAttributes/{docId}/")
+    public void save(@PathVariable("docId") Long docId, @RequestBody List<Attribute> attributes) {
+        Document doc = documentRepository.findById(docId).get();
+        attributeService.save(doc, attributes);
+    }
 
     @DeleteMapping("/{id]")
     public void remove(@PathVariable("id") Long id) {
