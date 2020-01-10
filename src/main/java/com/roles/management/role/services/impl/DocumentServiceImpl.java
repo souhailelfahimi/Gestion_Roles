@@ -141,4 +141,9 @@ public class DocumentServiceImpl implements DocumentService {
 
     }
 
+    @Override
+    public void deleteDoc(Long id) {
+        this.documentRepository.deleteById(id);
+    }
+
 }
