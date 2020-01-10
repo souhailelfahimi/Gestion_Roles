@@ -19,9 +19,14 @@ public interface UserService {
     public void deleteRole(Long id);
 
     public void addRoleToUser(String username, String rolename);
-
+    public void addRoleToUserByid(long id, String rolename);
     public void updateRole(AppRole role);
     
     public List<AppUser> getAllUsers();
+    
+    public AppUser findUserbyId(long id);
+    
+    public void updateUser(AppUser user);
+    public void deleteUser(long id);
 
 }

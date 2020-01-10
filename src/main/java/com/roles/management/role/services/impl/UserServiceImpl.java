@@ -2,6 +2,7 @@ package com.roles.management.role.services.impl;
 
 import com.roles.management.role.bean.AppPermession;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -78,7 +79,31 @@ public class UserServiceImpl implements UserService {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    
+
+	@Override
+	public List<AppUser> getAllUsers() {
+		return userRepository.findAll();
+	}
+
+	@Override
+	public AppUser findUserbyId(long id) {
+		Optional<AppUser> user=userRepository.findById(id);
+		if(user.isPresent())
+		return user.get();
+		
+		return null;
+	}
+
+	@Override
+	public void addRoleToUserByid(long id, String rolename) {
+		AppRole role = roleRepository.findByname(rolename);
+        Optional<AppUser> user = userRepository.findById(id);
+        if(user.isPresent())
+        	user.get().getRoles().add(role);
+		
+	}
+	@Override
     public void updateRole(AppRole role) {
 
         AppRole NewRole = role;
@@ -93,10 +118,30 @@ public class UserServiceImpl implements UserService {
         roleRepository.save(NewRole);
 
     }
+	@Override
+	public void updateUser(AppUser user) {
+		AppUser u=new AppUser(user.getId(),user.getUsername(),user.getPassword());
+		if(u.getPassword()==null) {
+			Optional<AppUser> us=userRepository.findById(u.getId());
+			u.setPassword(us.get().getPassword());
+		}else {
+			u.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
+		}
+		userRepository.deleteByUserRolesId(user.getId());
+		for(AppRole role:user.getRoles()) {
+			AppRole r = roleRepository.findRole(role.getRole());
+            u.getRoles().add(r);
+		}
+		userRepository.save(u);
+	}
 
 	@Override
-	public List<AppUser> getAllUsers() {
-		return userRepository.findAll();
+	public void deleteUser(long id) {
+		
+		userRepository.deleteByUserRolesId(id);
+		userRepository.deleteById(id);
+		
+		
 	}
 
 }

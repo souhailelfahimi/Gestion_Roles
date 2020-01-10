@@ -36,7 +36,13 @@ public class AppUser implements Serializable {
 
 	}
 
-	
+	public AppUser(long id,String username, String password) {
+		super();
+		this.Id=id;
+		this.username = username;
+		this.password = password;
+
+	}
 	
 
 	public AppUser(String username, String password, List<AppRole> roles) {
@@ -71,12 +77,10 @@ public class AppUser implements Serializable {
 	}
 	
 	//we should not return the password to the front-end even if it is crypted for security reasons
-	@JsonIgnore
+	
 	public String getPassword() {
 		return password;
 	}
-	
-	@JsonSetter
 	public void setPassword(String password) {
 		this.password = password;
 	}
